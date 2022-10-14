@@ -1,0 +1,10 @@
+[
+    {
+        "model":"polls.Choice",
+        "pk": 38,
+        "fields": {
+            "question": 13,
+            "choice_text": "Yes"
+        }
+    }
+]

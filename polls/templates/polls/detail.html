@@ -1,0 +1,32 @@
+{% extends "polls/layout.html" %} {% block body %}
+<div class="error_message">
+  {% if message %}
+  <h1>{{message}}</h1>
+  {% endif %}
+</div>
+<h1>{{question.question_text}}</h1>
+<h3 style="text-align: right">
+  -{{question.author}} <br />
+  {{question.pub_date|timesince}} ago
+</h3>
+
+{% if question.choice_set.all %}
+<form action="{% url 'polls:vote' question.id %}" method="POST">
+  {% csrf_token %} {% for choice in question.choice_set.all %}
+  <input type="radio" name="choice" id="choice" value="{{choice.id}}" />
+  <label for="{{forloop.count}}">{{choice.choice_text}}</label> <br />
+
+  {% endfor %} {% if question.opened == True %}
+  <input type="submit" value="Caste vote" />
+  {% else %}
+  <h2 style="color: red">Poll has been closed for voting.</h2>
+  <a href="{% url 'polls:result' question.id %}">See the results</a>
+  {% endif %}
+</form>
+
+{% else %}
+<h1>Sorry, This question has no options.</h1>
+{% endif %}
+
+<a href="{% url 'polls:index' %}">Back to Home</a>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'polls/layout.html' %} 
+{% block body %} 
+
+
+    <div>
+        <h1>Recent Questions: </h1>
+        {% if latest_question_list %}
+            <ul>
+                {% for question in latest_question_list %} 
+                    {% if question.choice_set.all %}
+                        <h2><li>
+                            <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+                        </li></h2>
+
+                    
+                    {% endif %}
+                    {% empty %} 
+                    <h1>No entries yet.</h1>
+                {% endfor %}
+            </ul>
+        {% else %} 
+        No polls are available.
+        {% endif %}
+    </div>
+
+    
+    
+
+</div> 
+
+{% endblock %}

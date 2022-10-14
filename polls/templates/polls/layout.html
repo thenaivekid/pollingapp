@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      function showdiv(div) {
+        document.querySelector(`#${div}`).style.display = "block";
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("button").forEach((button) => {
+          button.onclick = function (button) {
+            showdiv(this.dataset.div);
+          };
+        });
+      });
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static 'polls/styles.css' %}" />
+    <title>Polling App</title>
+  </head>
+
+  <body>
+    <div id="header">
+      <a href="{% url 'polls:index' %}"><h1>Polling App</h1></a>
+    </div>
+
+    <div
+      id="nav"
+      style="
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        color: springgreen;
+      "
+    >
+      <div>
+        <a href="{% url 'polls:index' %}" style="color: springgreen"
+          >Recent polls</a
+        >
+      </div>
+      <div>
+        <a href="{% url 'polls:allpolls' %}" style="color: springgreen"
+          >All polls</a
+        >
+      </div>
+      <div>
+        <a href="{% url 'polls:allpolls' %}" style="color: springgreen"
+          >Add polls</a
+        >
+      </div>
+      <div>
+        <a
+          href="{% url 'polls:detail' random_question.id %}"
+          style="color: springgreen"
+          >Random poll</a
+        >
+      </div>
+      <div style="text-align: center; color: rgb(225, 67, 130)">
+        <form action="{% url 'polls:search' %}" method="get">
+          {% csrf_token %}
+          <label for="q">Search</label>
+          <input type="text" name="q" value="{{query|escape}}" />
+          <input type="submit" />
+        </form>
+      </div>
+    </div>
+
+    <div style="color: red; font-size: large">
+      {% if message %}
+      <h1>{{message}}</h1>
+      {% endif %}
+    </div>
+    <div id="content">{% block body %} {% endblock %}</div>
+  </body>
+</html>

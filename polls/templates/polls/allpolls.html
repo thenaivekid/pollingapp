@@ -1,0 +1,57 @@
+{% extends 'polls/layout.html' %} 
+{% block body %} 
+
+<div style="display: flex;flex-wrap: wrap;justify-content: space-between;">
+    <div>
+        
+        {% if question_list %}
+            <ul>
+                {% for question in question_list %} 
+                    {% if question.choice_set.all %}
+                        <h2><li>
+                            <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+                            
+                        </li></h2>
+
+                    
+                    {% endif %}
+                    
+                {% endfor %}
+            </ul>
+        {% else %} 
+        No polls are available.
+        {% endif %}
+    </div>
+
+    
+    
+
+    <div>
+        <button data-div="add_question">+ADD</button>
+        <div id="add_question" style="display: none;">
+            <form action="{% url 'polls:allpolls' %}" method="post">
+                {% csrf_token %}
+                <input type="text" name="question" placeholder="Question" ><br>
+                <input type="text" name="author" placeholder="Your name"> <br>
+                
+                <input type="text" name="option1" placeholder="Option">
+                <input type="text" name="option2" placeholder="Option"><br>
+                <input type="text" name="option3" placeholder="Option">
+                <input type="text" name="option4" placeholder="Option"><br>
+            
+                
+                <input type="submit" value="SUBMIT">
+                
+
+            </form>
+        </div>
+    </div>
+    
+    
+    
+</div> 
+
+</div>
+
+
+{% endblock %}

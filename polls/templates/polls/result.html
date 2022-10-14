@@ -1,0 +1,11 @@
+{% extends 'polls/layout.html' %} 
+
+{% block body %} 
+
+    {% for choice in question.choice_set.all %} 
+
+        {{choice.choice_text}} --> vote: {{choice.vote}} <br>
+
+    {% endfor %}
+<a href="{% url 'polls:index' %}">Back to Home</a>
+{% endblock %}

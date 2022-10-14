@@ -1,0 +1,23 @@
+[
+    {
+        "model": "polls.Question",
+        "pk": 13,
+        "fields":
+        {
+            "question_text":"Is Putin a good guy?",
+            "pub_date":"2022-10-13 10:29",
+            "opened": "True"
+        }
+    },
+    {
+        "model": "polls.Question",
+        "pk": 14,
+        "fields":
+        {
+            "question_text":"Is Biden a good guy?",
+            "pub_date":"2022-10-13 10:29",
+            "opened": "True"
+
+        }
+    }
+]

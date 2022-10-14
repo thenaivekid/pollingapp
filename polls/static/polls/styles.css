@@ -1,0 +1,27 @@
+body {
+  background-color: #be9fe1;
+  background: white url("images/love.JPG") no-repeat;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", sans-serif;
+  display: grid;
+  margin: 40px;
+}
+
+a{  
+  color: rgb(216, 93, 134);
+}
+
+#header {
+  padding: 20px;
+  text-align: center;
+  background-color: #e1ccec;
+}
+
+#content {
+  background-color: #c9b6e4;
+  padding: 20px;
+  color: black;
+}
+
+.error_message{
+  color: red;
+}
